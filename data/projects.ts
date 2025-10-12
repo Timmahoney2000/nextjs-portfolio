@@ -1,18 +1,34 @@
 export const projects = [
     {
         id: 1,
-        projectTitle: "Modern Next.js Dashboard",
-        projectDescription: "A sleek and responsive dashboard built with Next.js, featuring dynamic data visualization and user authentication.",
-        projectImage: "/images/project1.png",
-        projectPreviewLink: "https://modern-dashboard-demo-timmahoney2000.vercel.app",
-        projectSourceCode: "https://github.com/timmahoney2000/nextjs.dashboard"
+        projectTitle: "A custom seafood restaurant website highlighting Park Seafood’s menu, specials, and story through a clean, engaging design.",
+        projectDescription: "A modern, mobile-friendly restaurant site built to highlight Park Seafood’s menu and coastal charm with a clean design and smooth user experience.",
+        projectImage: "/images/park-seafood.png",
+        projectPreviewLink: "https://parkseafood.netlify.app/",
+        projectSourceCode: "https://github.com/Timmahoney2000/park_seafood"
     },
     {
         id: 2,
-        projectTitle: "Modern Next.js Dashboard",
-        projectDescription: "A sleek and responsive dashboard built with Next.js, featuring dynamic data visualization and user authentication.",
-        projectImage: "/images/project1.png",
-        projectPreviewLink: "https://modern-dashboard-demo-timmahoney2000.vercel.app",
-        projectSourceCode: "https://github.com/timmahoney2000/nextjs.dashboard"
+        projectTitle: "Sonic the Hedgehog side-scroller web game",
+        projectDescription: "Sonic Side-Scroller is a 2D browser game built with Vite and JavaScript, featuring smooth animations, collision detection, and responsive controls. It showcases my ability to build interactive, performance-optimized experiences using modern front-end technologies",
+        projectImage: "/images/sonic.png",
+        projectPreviewLink: "https://sonic-side-scroller.netlify.app/",
+        projectSourceCode: "https://github.com/Timmahoney2000/sonic"
+    },
+    {
+         id: 2,
+        projectTitle: "Sonic the Hedgehog side-scroller web game",
+        projectDescription: "Sonic Side-Scroller is a 2D browser game built with Vite and JavaScript, featuring smooth animations, collision detection, and responsive controls. It showcases my ability to build interactive, performance-optimized experiences using modern front-end technologies",
+        projectImage: "/images/sonic.png",
+        projectPreviewLink: "https://sonic-side-scroller.netlify.app/",
+        projectSourceCode: "https://github.com/Timmahoney2000/sonic"
+    },
+    {
+         id: 2,
+        projectTitle: "Sonic the Hedgehog side-scroller web game",
+        projectDescription: "Sonic Side-Scroller is a 2D browser game built with Vite and JavaScript, featuring smooth animations, collision detection, and responsive controls. It showcases my ability to build interactive, performance-optimized experiences using modern front-end technologies",
+        projectImage: "/images/sonic.png",
+        projectPreviewLink: "https://sonic-side-scroller.netlify.app/",
+        projectSourceCode: "https://github.com/Timmahoney2000/sonic"
     }
 ];

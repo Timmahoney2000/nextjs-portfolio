@@ -11,9 +11,9 @@ export default function About() {
     <Image src="/images/about-image.png" alt="about-image"width={500}height={500} className='w-full h-80 md:h-120 object-cover rounded-lg'/>
     </div>
     <div className='md:text-xl text-neutral-600 dark:text-neutral-300'>
-      <p className='mb-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem error illum, totam eaque cumque non praesentium repellat harum voluptatem quos. Fugit maxime eum repellat officiis esse soluta ea accusantium modi?
+      <p className='mb-3'>Hi, I&apos;m Timothy Mahoney - a passionate Full Stack Developer and lifelong problem solver dedicated to building clean, scalable, and user-focused digital experiences. With a background in hardware engineering and IT field service, I bring a unique systems-level perspective to every project - from server logic to the last pixel of the user interface.
       </p>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse enim ipsa laudantium, voluptatum veniam et quidem! Vel, distinctio delectus minima voluptatum laborum eos id laudantium! Minima, corrupti fugit. Tempore architecto omnis voluptate maiores quia saepe reprehenderit minima repellendus suscipit impedit?</p>
+      <p>I specialize in React, Next.js, Tailwind, and Node, leveraging modern frameworks and best practices to craft fast, responsive web applications that deliver real value. Whether I&apos;m designing an intuitive front end or optimizing backend performance, my goal is always the same: to create seamless, high-impact solutions that make technology feel effortless.</p>
     </div>
       </div>
     </section>
