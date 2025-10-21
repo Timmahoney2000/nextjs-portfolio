@@ -17,7 +17,7 @@ export default function Contact() {
       {/* Radial gradient for the container to give a faded look */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
       <p className="relative z-20 bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text py-8 text-3xl md:text-5xl text-center font-bold text-transparent">
-        Let&apos;s elevate your digital brand together
+             Let&apos;s create something unforgettable for your brand.
       </p>
       <p className='text-center text-neutral-500 dark:text-neutral-300 z-20'>
         Let&apos;s connect and talk about how I can help bring your ideas to life.
