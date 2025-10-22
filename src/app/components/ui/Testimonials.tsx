@@ -12,7 +12,7 @@ import { AnimatedTestimonials } from './animated-testimonials';
     },
     {
       quote:
-        "Working with timothy was effortless - he&apos;s communicative, reliable, and delivers high-quality solutions on time. I would trust him with any project, big or small.",
+        "Working with timothy was effortless - he is communicative, reliable, and delivers high-quality solutions on time. I would trust him with any project, big or small.",
       name: "Finnegan Daniels",
       designation: "CTO at FLJ Solutions",
       src: "/images/finn-daniels.jpg",
