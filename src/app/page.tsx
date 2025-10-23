@@ -3,6 +3,7 @@ import About from './components/About';
 import RecentProjects from './components/RecentProjects';
 import Testimonials from './components/ui/Testimonials';
 import Contact from './components/Contact';
+import Chatbot from './components/Chatbot';
 import { FloatingNav } from './components/ui/floating-navbar';
 import { navItems } from '../../data/nav-items';
 import { projects } from '../../data/projects';
@@ -13,6 +14,7 @@ export default function Home() {
       <div className='max-w-7xl w-full'>
         <FloatingNav navItems={navItems}/>
         <Hero/>
+        <Chatbot/>
         <About/>
         <RecentProjects/>
         <Testimonials/>

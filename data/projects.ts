@@ -16,7 +16,7 @@ export const projects = [
         projectSourceCode: "https://github.com/Timmahoney2000/sonic"
     },
      {
-         id: 2,
+         id: 3,
         projectTitle: "Mern-Notes",
         projectDescription: "A note app created using the MERN stack with drag and drop functionality",
         projectImage: "/images/mern-notes.png",
@@ -24,7 +24,7 @@ export const projects = [
         projectSourceCode: "https://github.com/Timmahoney2000/mern-thinkboard"
     },
      {
-         id: 2,
+         id: 4,
         projectTitle: "Starry Night",
         projectDescription: "A React component with a starry night background with a fade-in/fade-out effect",
         projectImage: "/images/starrynight.png",
