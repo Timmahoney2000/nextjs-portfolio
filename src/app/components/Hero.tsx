@@ -27,7 +27,7 @@ export default function Hero() {
         <TextGenerateEffect words='Turning imagination into seamless interaction.'/>
         <p className='text-center text-neutral-600 dark:text-neutral-300 lg:text-xl md:tracking-wider'>Hello, I&apos;m Tim. A Fullstack Developer.</p>
         <div className='flex justify-center my-6'>
-          <a href="#about" className='px-8 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white'>Explore My Work</a>
+          <a href="#RecentProjects" className='px-8 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white'>Explore My Work</a>
         </div>
       </div>
     </div>
