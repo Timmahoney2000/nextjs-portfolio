@@ -2,229 +2,290 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
-// Comprehensive knowledge base about Timothy
-const knowledge = {
-  name: "Timothy J. Mahoney",
-  title: "Front-End Developer",
-  email: "timmahoney2000@gmail.com",
-  phone: "(908) 397-8825",
-  location: "South Plainfield, NJ 07080",
-  
-  summary: "Front-End Developer with proven expertise in React, Next.js, Tailwind CSS, and TypeScript, backed by IT field engineering experience and B.A. in Computer Science. Consistently delivers responsive, accessible, and high-performance web applications that exceed industry standards.",
-  
-  skills: {
-    frontend: ["React", "Next.js", "Tailwind CSS", "Vite", "HTML5", "JavaScript (ES6+)", "TypeScript"],
-    backend: ["Node.js", "MySQL", "MongoDB", "REST APIs"],
-    tools: ["Git", "GitHub", "Postman", "VS Code", "Agile/Scrum", "CI/CD (Vercel, Netlify)"]
-  },
-  
-  experience: [
+// Knowledge base with embeddings-ready structure
+const knowledgeBase = {
+  documents: [
     {
-      title: "Field Service Engineer",
-      company: "Unisys",
-      location: "Remote",
-      period: "2023 - Present",
-      achievements: [
-        "Managed enterprise-level technical operations for laptops achieving 95% SLA compliance while reducing client downtime for clients such as Verizon, AT&T, and SHI",
-        "Resolved complex hardware/software challenges across distributed enterprise environments ensuring 99.9% uptime for mission-critical systems serving Fortune 500 customers, including FedEx, Phillips 66, and the EPA",
-        "Led technical training programs for new team members, accelerating onboarding efficiency by 30%",
-        "Collaborated with engineering teams to reduce repeat service tickets by 15%"
-      ]
+      id: 'summary',
+      category: 'about',
+      content: "Timothy J. Mahoney is a Front-End Developer with proven expertise in React, Next.js, Tailwind CSS, and TypeScript. He has IT field engineering experience and a B.A. in Computer Science. He consistently delivers responsive, accessible, and high-performance web applications. He drives measurable performance improvements, reduces deployment cycles by 40%, and enhances team velocity by 20% through strategic leadership and Agile collaboration.",
+      keywords: ['about', 'summary', 'who', 'introduction', 'overview', 'developer', 'frontend']
     },
     {
-      title: "Help Desk Technician",
-      company: "Hopewell Valley Schools",
-      location: "Pennington, NJ",
-      period: "2019 - 2021",
-      achievements: [
-        "Executed high-volume technical operations managing 30+ daily support tickets across 2,000+ user environment",
-        "Sustained 95% first-contact resolution rate supporting Windows 11, macOS, and Chromebook ecosystems",
-        "Architected large-scale technology infrastructure deployments, including 500+ workstations",
-        "Maintained 99% system availability during COVID-19 hybrid learning transition"
-      ]
+      id: 'contact',
+      category: 'contact',
+      content: "Contact Timothy Mahoney at email: timmahoney2000@gmail.com, phone: (908) 397-8825, location: South Plainfield, NJ 07080. LinkedIn: linkedin.com/in/timmahoney77, GitHub: github.com/Timmahoney2000, Twitter: x.com/timmahoney2000. He is open to new opportunities and collaborations.",
+      keywords: ['contact', 'email', 'phone', 'reach', 'hire', 'linkedin', 'github', 'get in touch', 'availability']
     },
     {
-      title: "Executive Sous Chef",
-      company: "Johnson & Johnson",
-      location: "New Brunswick, NJ",
-      period: "2016 - 2019",
-      achievements: []
+      id: 'skills-frontend',
+      category: 'skills',
+      content: "Frontend skills: React, Next.js, Tailwind CSS, Vite, HTML5, JavaScript ES6+, TypeScript. Tim specializes in building modern, responsive web applications with excellent performance and user experience.",
+      keywords: ['skills', 'frontend', 'react', 'nextjs', 'next.js', 'tailwind', 'typescript', 'javascript', 'html', 'css', 'rag']
     },
     {
-      title: "Chef de Cuisine",
-      company: "Washington House",
-      location: "Basking Ridge, NJ",
-      period: "2014 - 2016",
-      achievements: []
+      id: 'skills-backend',
+      category: 'skills',
+      content: "Backend skills: Node.js, MySQL, MongoDB, REST APIs, Express.js. Tim can build full-stack applications with database integration and RESTful API design.",
+      keywords: ['skills', 'backend', 'nodejs', 'node', 'mongodb', 'mysql', 'api', 'database', 'express', 'rag', 'vector database']
+    },
+    {
+      id: 'skills-tools',
+      category: 'skills',
+      content: "Tools and workflow: Git, GitHub, Postman, VS Code, Agile/Scrum methodologies, CI/CD with Vercel and Netlify. Tim is experienced with modern development workflows and team collaboration.",
+      keywords: ['tools', 'git', 'github', 'agile', 'scrum', 'cicd', 'vercel', 'rag', 'workflow', 'methodology']
+    },
+    {
+      id: 'job-unisys',
+      category: 'experience',
+      content: "Field Service Engineer at Unisys (Remote, 2023-Present). Manages enterprise-level technical operations for laptops achieving 95% SLA compliance for clients like Verizon, AT&T, and SHI. Resolved complex hardware/software challenges ensuring 99.9% uptime for Fortune 500 customers including FedEx, Phillips 66, and EPA. Led technical training programs accelerating onboarding by 30%. Reduced repeat service tickets by 15%.",
+      keywords: ['unisys', 'current job', 'field service', 'engineer', 'experience', 'verizon', 'att', 'fedex', 'fortune 500', 'clients']
+    },
+    {
+      id: 'job-hopewell',
+      category: 'experience',
+      content: "Help Desk Technician at Hopewell Valley Schools (Pennington, NJ, 2019-2021). Managed 30+ daily support tickets across 2,000+ user environment with 95% first-contact resolution rate. Supported Windows 11, macOS, and Chromebook ecosystems. Deployed 500+ workstations and enterprise AV systems. Maintained 99% system availability during COVID-19 hybrid learning transition.",
+      keywords: ['hopewell', 'help desk', 'school', 'experience', 'support', 'covid', 'technician']
+    },
+    {
+      id: 'job-jnj',
+      category: 'experience',
+      content: "Executive Sous Chef at Johnson & Johnson (New Brunswick, NJ, 2016-2019). Culinary leadership role managing kitchen operations.",
+      keywords: ['johnson', 'chef', 'culinary', 'experience', 'sous chef']
+    },
+    {
+      id: 'job-washington',
+      category: 'experience',
+      content: "Chef de Cuisine at Washington House (Basking Ridge, NJ, 2014-2016). Culinary leadership position.",
+      keywords: ['washington house', 'chef', 'culinary', 'experience', 'cuisine']
+    },
+    {
+      id: 'education',
+      category: 'education',
+      content: "B.A. in Computer Science from Thomas Edison State University, Trenton, NJ. Graduation: June 2025. GPA: 3.5. Currently completing degree while working full-time.",
+      keywords: ['education', 'school', 'university', 'degree', 'computer science', 'gpa', 'college', 'thomas edison']
+    },
+    {
+      id: 'project-portfolio',
+      category: 'projects',
+      content: "Portfolio Site built with Next.js and Tailwind CSS, hosted on Vercel. Features responsive design, optimized SEO, and a custom RAG AI chatbot for interactive engagement. Implements modular architecture, reusable components, and automated CI/CD pipeline through GitHub integration.",
+      keywords: ['portfolio', 'project', 'nextjs', 'tailwind', 'chatbot', 'website', 'this site']
+    },
+    {
+      id: 'project-notes',
+      category: 'projects',
+      content: "Notes App: Full-stack MERN application (MongoDB, Express.js, React, Node.js) with CRUD functionality. Designed RESTful API backend interfacing with MongoDB database for secure note management and real-time updates. Deployed on Render cloud platform, showcasing DevOps skills.",
+      keywords: ['notes app', 'project', 'mern', 'mongodb', 'crud', 'fullstack', 'react', 'nodejs']
+    },
+    {
+      id: 'project-restaurant',
+      category: 'projects',
+      content: "Restaurant Website for Park Seafood in Seaside Park, NJ. Multi-page responsive site with HTML5, CSS, JavaScript. Features menu sections, structured navigation, and design reflecting boardwalk heritage and fresh seafood focus.",
+      keywords: ['restaurant', 'project', 'park seafood', 'website', 'html', 'css']
+    },
+    {
+      id: 'achievements',
+      category: 'achievements',
+      content: "Key achievements: 99.9% uptime for mission-critical systems, 95% SLA compliance, 95% first-contact resolution rate, 30% onboarding efficiency improvement, 15% reduction in repeat tickets, 40% deployment cycle reduction, 20% team velocity enhancement. Works with Fortune 500 clients including Verizon, AT&T, FedEx, Phillips 66, EPA.",
+      keywords: ['achievements', 'metrics', 'results', 'accomplishments', 'performance', 'statistics']
+    },
+    {
+      id: 'availability',
+      category: 'availability',
+      content: "Open to new opportunities and collaborations. Interested in frontend or full-stack development roles using React, Next.js, and modern web technologies. Open to remote, hybrid, or on-site positions in NJ/NY area.",
+      keywords: ['available', 'hiring', 'opportunities', 'looking', 'job search', 'open to work']
+    },
+    {
+      id: 'hobbies-personal',
+      category: 'personal',
+      content: "Outside of work and coding, Tim enjoys spending time with his kids, fishing, reading, and touching grass. I also hear he's a real whiz in the kitchen from his culinary background.",
+      keywords: ['hobbies', 'hobby', 'interests', 'personal', 'life', 'fun', 'kids', 'family', 'free time', 'relax', 'play', 'outside work', 'do for fun', 'enjoy', 'fishing', 'reading', 'cooking', 'kitchen', 'spare time']
+    },
+    {
+      id: 'reading-personal',
+      category: 'personal',
+      content: "Recent reads: Post Office by Charles Bukowski, The Road to React by Robin Wieruch, You Don't Know JS by Kyle Simpson, The Tao of Pooh by Benjamin Hoff, On Power by Mark R. Levin.",
+      keywords: ['books', 'reading', 'learning', 'read', 'relax', 'free time', 'hobbies']
+    },
+    {
+      id: 'learning-currently',
+      category: 'learning',
+      content: "Tim is currently learning advanced TypeScript patterns, exploring serverless architecture, retrieval augmented generation, vector databases, and diving deeper into React Server Components. He's also studying system design and scalability to prepare for senior-level roles.",
+      keywords: ['learning', 'studying', 'currently', 'improving', 'education', 'growth']
+    },
+    {
+      id: 'tech-influences',
+      category: 'inspiration',
+      content: "Tim follows thought leaders like Kent C. Dodds, Dan Abramov, Ken Wheeler, Leon Noel, Danny Thompson, and Theo Browne. He stays current by reading the React and Next.js documentation regularly, watching conference talks, and participating in developer communities.",
+      keywords: ['influences', 'follow', 'inspiration', 'role models', 'learn from', 'mentors']
+    },
+    {
+      id: 'ideal-role',
+      category: 'preferences',
+      content: "Tim's ideal role involves working with modern JavaScript frameworks, collaborating with designers and product teams, and having ownership over features from conception to deployment. He thrives in environments that value clean code, testing, and continuous improvement.",
+      keywords: ['ideal job', 'dream role', 'perfect position', 'looking for', 'want']
+    },
+    {
+      id: 'work-environment',
+      category: 'preferences',
+      content: "Tim works best in collaborative environments with clear communication, regular code reviews, and a culture of learning. He's comfortable with remote work (currently works remotely for Unisys) but also enjoys hybrid arrangements for team bonding and pair programming sessions.",
+      keywords: ['work environment', 'culture', 'remote', 'office', 'team', 'prefer']
+    },
+    {
+      id: 'company-size',
+      category: 'preferences',
+      content: "Tim is open to both startup and enterprise environments. He appreciates the innovation and ownership opportunities at startups, but also values the mentorship and structure available at larger companies. His experience ranges from small school districts to Fortune 500 companies.",
+      keywords: ['company size', 'startup', 'enterprise', 'big company', 'small company']
     }
-  ],
-  
-  education: {
-    degree: "B.A. in Computer Science",
-    school: "Thomas Edison State University",
-    location: "Trenton, NJ",
-    graduation: "June 2025",
-    gpa: "3.5"
-  },
-  
-  projects: [
-    {
-      name: "Portfolio Site",
-      technologies: ["Next.js", "Tailwind CSS", "React", "Vercel", "RAG AI Chatbot"],
-      description: "Personal portfolio website showcasing full-stack development projects with clean UI, responsive design, and optimized SEO. Features a custom RAG AI chatbot for interactive user engagement.",
-      highlights: [
-        "Implemented modular architecture and reusable components",
-        "Deployed with automated CI/CD pipeline through GitHub integration",
-        "Optimized for performance and global deployment"
-      ]
-    },
-    {
-      name: "Notes App",
-      technologies: ["MERN Stack", "MongoDB", "Express.js", "React", "Node.js", "Render"],
-      description: "Full-stack note-taking application with CRUD functionality and RESTful API backend.",
-      highlights: [
-        "Designed RESTful API interfacing with MongoDB database",
-        "Enabled secure note management and real-time updates",
-        "Managed full life-cycle from development to production on Render"
-      ]
-    },
-    {
-      name: "Restaurant Website",
-      technologies: ["HTML5", "CSS", "JavaScript", "Responsive Design"],
-      description: "Responsive, multi-page site for Park Seafood (Seaside Park, NJ) featuring menu pages, about section, and contact information.",
-      highlights: [
-        "Implemented clear menu sections with structured HTML",
-        "Designed to reflect boardwalk heritage and fresh seafood focus",
-        "Optimized for mobile and desktop viewing"
-      ]
-    }
-  ],
-  
-  availability: "Open to new opportunities and collaborations",
-  
-  social: {
-    github: "https://github.com/Timmahoney2000",
-    linkedin: "https://www.linkedin.com/in/timmahoney77/",
-    twitter: "https://x.com/timmahoney2000"
-  }
+  ]
 };
 
-// Enhanced response generator with resume knowledge
-const generateResponse = (message: string): string => {
-  const msg = message.toLowerCase();
+// Simple semantic search function
+function searchKnowledge(query: string, topK: number = 3): string[] {
+  const queryLower = query.toLowerCase();
+  const queryWords = queryLower.split(/\s+/).filter(w => w.length > 2);
   
-  // Greetings
-  if (msg.match(/^(hi|hello|hey|greetings|good morning|good afternoon|sup|yo)/)) {
-    return `Hello! 👋 I'm Tim's AI assistant. I know all about his experience, skills, projects, and education. Ask me anything like:\n\n• "What's your work experience?"\n• "Tell me about your projects"\n• "What are your skills?"\n• "Where did you go to school?"\n\nWhat would you like to know?`;
+  // Score each document based on keyword matches and content relevance
+  const scored = knowledgeBase.documents.map(doc => {
+    let score = 0;
+    
+    // Check keyword matches (high weight)
+    doc.keywords.forEach(keyword => {
+      if (queryLower.includes(keyword)) {
+        score += 10;
+      }
+      // Exact keyword match in query words
+      if (queryWords.includes(keyword)) {
+        score += 15;
+      }
+      queryWords.forEach(word => {
+        if (keyword.includes(word)) {
+          score += 5;
+        }
+      });
+    });
+    
+    // Check content matches (lower weight)
+    queryWords.forEach(word => {
+      if (doc.content.toLowerCase().includes(word)) {
+        score += 2;
+      }
+    });
+    
+    // Boost exact phrase matches
+    if (doc.content.toLowerCase().includes(queryLower)) {
+      score += 15;
+    }
+    
+    return { doc, score };
+  });
+  
+  // Sort by score and return top K documents
+  // Only return documents with meaningful scores (threshold of 5)
+  return scored
+    .sort((a, b) => b.score - a.score)
+    .filter(item => item.score > 5)
+    .slice(0, topK)
+    .map(item => item.doc.content);
+}
+
+// Enhanced response generator using RAG
+function generateRAGResponse(query: string): string {
+  const queryLower = query.toLowerCase();
+  
+  // Real-time information handlers (priority)
+  // Date and time questions
+  if (queryLower.includes('date') || queryLower.includes('today')) {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+    return `Today is ${dateStr}.`;
   }
   
-  // Work Experience - General
-  if (msg.includes('experience') || msg.includes('work history') || msg.includes('employment') || msg.includes('job')) {
-    const currentJob = knowledge.experience[0];
-    return `Tim has diverse experience spanning IT and culinary fields:\n\n**Current Role:**\n🔧 ${currentJob.title} at ${currentJob.company} (${currentJob.period})\n• Managing enterprise-level tech operations for Fortune 500 clients\n• 99.9% uptime for mission-critical systems\n• Leading technical training programs\n\n**Previous:**\n• Help Desk Technician at Hopewell Valley Schools (2019-2021)\n• Executive Sous Chef at Johnson & Johnson (2016-2019)\n• Chef de Cuisine at Washington House (2014-2016)\n\nAsk about a specific role for more details!`;
+  if (queryLower.includes('time') && !queryLower.includes('full time') && !queryLower.includes('full-time')) {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-US', { 
+      hour: 'numeric', 
+      minute: '2-digit',
+      hour12: true 
+    });
+    return `The current time is ${timeStr}.`;
   }
   
-  // Current Job - Unisys
-  if (msg.includes('unisys') || msg.includes('current') || msg.includes('field service') || msg.includes('field engineer')) {
-    const job = knowledge.experience[0];
-    return `**${job.title} at ${job.company}** (${job.period})\n\n${job.achievements.map(a => `• ${a}`).join('\n')}\n\nTim works with major clients including Verizon, AT&T, FedEx, Phillips 66, and the EPA, maintaining 99.9% uptime and 95% SLA compliance.`;
+  if (queryLower.includes('day of') || queryLower.includes('what day')) {
+    const now = new Date();
+    const dayStr = now.toLocaleDateString('en-US', { weekday: 'long' });
+    return `Today is ${dayStr}.`;
   }
   
-  // Help Desk Role
-  if (msg.includes('help desk') || msg.includes('hopewell') || msg.includes('school')) {
-    const job = knowledge.experience[1];
-    return `**${job.title} at ${job.company}** (${job.period})\n\n${job.achievements.map(a => `• ${a}`).join('\n')}\n\nTim managed a 2,000+ user environment and played a crucial role during the COVID-19 transition to hybrid learning.`;
+  if (queryLower.includes('year') && !queryLower.includes('experience')) {
+    const year = new Date().getFullYear();
+    return `The current year is ${year}.`;
   }
   
-  // Skills - General
-  if (msg.includes('skill') || msg.includes('technology') || msg.includes('tech stack') || msg.includes('what can you do') || msg.includes('what do you know')) {
-    return `Tim's technical skills:\n\n**Frontend:**\n${knowledge.skills.frontend.join(', ')}\n\n**Backend:**\n${knowledge.skills.backend.join(', ')}\n\n**Tools & Workflow:**\n${knowledge.skills.tools.join(', ')}\n\nHe specializes in building modern, responsive web applications with React and Next.js!`;
+  // Weather (can't provide real weather, but can acknowledge)
+  if (queryLower.includes('weather')) {
+    return "I don't have access to real-time weather data, but you can check weather.com or your local weather app! Is there anything about Tim's experience or skills I can help you with?";
   }
   
-  // Specific Tech Questions
-  if (msg.includes('react') || msg.includes('next.js') || msg.includes('nextjs')) {
-    return `Yes! Tim is highly proficient in React and Next.js:\n\n• Built his portfolio site with Next.js and Tailwind CSS\n• Uses React for all modern UI development\n• Implements server-side rendering and optimal performance\n• Works with TypeScript for type-safe code\n\nHis portfolio (this site!) is built entirely with Next.js and React, featuring a custom AI chatbot!`;
+  // Knowledge base retrieval for Tim-specific questions
+  const relevantDocs = searchKnowledge(query, 3);
+  
+  if (relevantDocs.length === 0) {
+    return "I don't have specific information about that, but feel free to ask me about Tim's experience, skills, projects, education, or how to contact him! I can also tell you the current date and time.";
   }
   
-  if (msg.includes('typescript') || msg.includes('javascript')) {
-    return `Tim works extensively with JavaScript and TypeScript:\n\n• Modern ES6+ JavaScript\n• TypeScript for type-safe development\n• Used across all his React/Next.js projects\n• Ensures code quality and maintainability\n\nHe believes TypeScript is essential for building scalable applications!`;
+  // Handle specific question types with retrieved context
+  if (queryLower.match(/^(hi|hello|hey|greetings)/)) {
+    return "Hi! 👋 I'm Tim's AI assistant. I can answer questions about his experience, skills, projects, and education. I can also tell you the current date and time. What would you like to know?";
   }
   
-  // Projects
-  if (msg.includes('project') || msg.includes('portfolio site') || msg.includes('what have you built') || msg.includes('created')) {
-    return `Tim has built several impressive projects:\n\n**1. Portfolio Site** (Next.js, Tailwind, AI Chatbot)\n• This site you're on right now!\n• Custom RAG AI chatbot for interactive engagement\n• Optimized SEO and responsive design\n• Automated CI/CD with Vercel\n\n**2. Notes App** (MERN Stack)\n• Full-stack CRUD application\n• RESTful API with MongoDB backend\n• Deployed on Render cloud platform\n\n**3. Restaurant Website** (HTML/CSS/JS)\n• Multi-page responsive site for Park Seafood\n• Structured menu sections and clean navigation\n\nWant details on any specific project?`;
+  // For simple/specific questions, return only the most relevant document
+  const simpleQuestions = ['hobbies', 'hobby', 'free time', 'fun', 'interests', 'email', 'phone', 'contact', 'location', 'where', 'gpa', 'school', 'degree', 'books', 'reading'];
+  const isSimpleQuestion = simpleQuestions.some(term => queryLower.includes(term));
+  
+  if (isSimpleQuestion && relevantDocs.length > 0) {
+    return relevantDocs[0]; // Return only the top match
   }
   
-  // Specific Project Questions
-  if (msg.includes('notes app') || msg.includes('mern')) {
-    const project = knowledge.projects[1];
-    return `**${project.name}**\n\nTechnologies: ${project.technologies.join(', ')}\n\n${project.description}\n\nKey Features:\n${project.highlights.map(h => `• ${h}`).join('\n')}\n\nThis showcases Tim's full-stack development capabilities from database design to cloud deployment!`;
+  // For "what" questions, provide direct information
+  if (queryLower.includes('what') || queryLower.includes('tell me')) {
+    // If asking about broad topics, return multiple docs
+    const broadTopics = ['experience', 'skills', 'projects', 'background'];
+    const isBroadQuestion = broadTopics.some(term => queryLower.includes(term));
+    
+    if (isBroadQuestion) {
+      return relevantDocs.join('\n\n');
+    }
+    return relevantDocs[0]; // Otherwise just the top result
   }
   
-  if (msg.includes('restaurant') || msg.includes('park seafood')) {
-    const project = knowledge.projects[2];
-    return `**${project.name}**\n\nTechnologies: ${project.technologies.join(', ')}\n\n${project.description}\n\nHighlights:\n${project.highlights.map(h => `• ${h}`).join('\n')}`;
+  // For "how" questions about contact
+  if (queryLower.includes('how') && (queryLower.includes('contact') || queryLower.includes('reach'))) {
+    return relevantDocs[0];
   }
   
-  // Education
-  if (msg.includes('education') || msg.includes('school') || msg.includes('college') || msg.includes('university') || msg.includes('degree') || msg.includes('studied')) {
-    const edu = knowledge.education;
-    return `**${edu.degree}**\n${edu.school}, ${edu.location}\nGraduation: ${edu.graduation}\nGPA: ${edu.gpa}\n\nTim is completing his Computer Science degree while working full-time, demonstrating strong dedication and time management skills.`;
+  // For yes/no questions, provide context
+  if (queryLower.match(/^(do|does|can|is|are|has|have)/)) {
+    const answer = relevantDocs[0];
+    if (answer.toLowerCase().includes(queryLower.replace(/^(do|does|can|is|are|has|have)\s+/i, ''))) {
+      return `Yes! ${answer}`;
+    }
+    return relevantDocs[0];
   }
   
-  // About/Summary
-  if (msg.includes('about') || msg.includes('who are you') || msg.includes('tell me about') || msg.includes('introduce') || msg.includes('summary')) {
-    return `${knowledge.summary}\n\nTim brings a unique combination of:\n• Strong technical foundation in modern web development\n• Real-world IT experience with Fortune 500 clients\n• Academic background with a B.A. in Computer Science\n• Proven track record of delivering measurable results\n\nHe's passionate about creating elegant, high-performance web applications that solve real business problems.`;
+  // Default: return most relevant single document for focused questions
+  if (relevantDocs.length === 1) {
+    return relevantDocs[0];
   }
   
-  // Contact/Resume
-  if (msg.includes('contact') || msg.includes('reach') || msg.includes('email') || msg.includes('phone') || msg.includes('get in touch') || msg.includes('hire') || msg.includes('resume') || msg.includes('cv')) {
-    return `**Contact Information:**\n\n📧 Email: ${knowledge.email}\n📱 Phone: ${knowledge.phone}\n📍 Location: ${knowledge.location}\n\n💼 LinkedIn: ${knowledge.social.linkedin}\n🐙 GitHub: ${knowledge.social.github}\n\n📄 You can also download Tim's full resume from this site!\n\nHe's ${knowledge.availability.toLowerCase()}.`;
-  }
-  
-  // Location/Remote
-  if (msg.includes('location') || msg.includes('where') || msg.includes('based') || msg.includes('remote')) {
-    return `Tim is based in ${knowledge.location} and currently works remotely for Unisys.\n\nHe's open to:\n• Remote positions\n• Hybrid arrangements\n• On-site opportunities in the NJ/NY area\n\nHe's ${knowledge.availability.toLowerCase()}!`;
-  }
-  
-  // Achievements/Metrics
-  if (msg.includes('achievement') || msg.includes('accomplishment') || msg.includes('metrics') || msg.includes('results')) {
-    return `Tim has delivered measurable results throughout his career:\n\n📊 **Key Metrics:**\n• 99.9% uptime for mission-critical systems\n• 95% SLA compliance rate\n• 95% first-contact resolution rate\n• 30% improvement in onboarding efficiency\n• 15% reduction in repeat service tickets\n• 40% reduction in deployment cycles\n• 20% enhancement in team velocity\n\nHe focuses on outcomes that drive real business value!`;
-  }
-  
-  // Clients
-  if (msg.includes('client') || msg.includes('customer') || msg.includes('who have you worked')) {
-    return `Tim has worked with impressive enterprise clients:\n\n**Fortune 500 Companies:**\n• Verizon\n• AT&T\n• FedEx\n• Phillips 66\n• EPA (Environmental Protection Agency)\n• SHI International\n• Johnson & Johnson\n\nPlus 2,000+ users at Hopewell Valley Schools during the critical COVID-19 transition period.`;
-  }
-  
-  // Agile/Development Process
-  if (msg.includes('agile') || msg.includes('scrum') || msg.includes('methodology') || msg.includes('workflow')) {
-    return `Tim is experienced with modern development workflows:\n\n• Agile/Scrum methodologies\n• CI/CD pipelines (Vercel, Netlify)\n• Git version control and GitHub collaboration\n• Code reviews and quality assurance\n• Cross-functional team collaboration\n\nHe led technical training programs and improved team velocity by 20% through strategic Agile practices!`;
-  }
-  
-  // API/Backend
-  if (msg.includes('api') || msg.includes('backend') || msg.includes('database') || msg.includes('mongodb') || msg.includes('node')) {
-    return `Tim has solid backend development skills:\n\n**Backend Technologies:**\n• Node.js for server-side JavaScript\n• MongoDB & MySQL databases\n• RESTful API design and implementation\n• Express.js framework\n\n**Projects:**\nHis Notes App features a complete RESTful API backend interfacing with MongoDB, enabling secure note management and real-time updates.\n\nHe's comfortable building full-stack applications from database to deployment!`;
-  }
-  
-  // Availability/Hiring
-  if (msg.includes('available') || msg.includes('hiring') || msg.includes('opportunity') || msg.includes('looking for work')) {
-    return `Great question! Tim is ${knowledge.availability.toLowerCase()}.\n\nHe's particularly interested in:\n• Front-end or full-stack development roles\n• Projects using React, Next.js, and modern web technologies\n• Remote or hybrid positions\n• Innovative teams building impactful products\n\nContact him at:\n📧 ${knowledge.email}\n📱 ${knowledge.phone}\n\nLet's discuss how he can contribute to your team!`;
-  }
-  
-  // Download Resume
-  if (msg.includes('download') || msg.includes('pdf')) {
-    return `You can download Tim's full resume from this site! Look for the "Download Resume" button in the contact section, or scroll down to find it.\n\nThe resume includes detailed information about his experience, projects, and technical skills.`;
-  }
-  
-  // Help/What can you do
-  if (msg.includes('help') || msg.includes('what can i ask') || msg.includes('commands')) {
-    return `I can answer detailed questions about Tim's background! Try asking:\n\n**Experience:**\n• "What's your current job?"\n• "Tell me about Unisys"\n• "What clients have you worked with?"\n\n**Skills & Projects:**\n• "What are your skills?"\n• "Tell me about your projects"\n• "Do you know React/Next.js?"\n\n**Education & Contact:**\n• "Where did you go to school?"\n• "How can I contact you?"\n• "Are you available for work?"\n\nJust ask naturally - I understand!`;
-  }
-  
-  // Default response
-  return `I'm here to help you learn about Tim! I can tell you about:\n\n• His work experience (currently at Unisys)\n• Technical skills (React, Next.js, TypeScript, etc.)\n• Projects he's built (Portfolio, Notes App, Restaurant Site)\n• Education (B.A. in Computer Science)\n• How to get in touch\n\nWhat would you like to know? Just ask naturally!`;
-};
+  // For complex queries, return top 2 results max
+  return relevantDocs.slice(0, 2).join('\n\n');
+}
 
 interface Message {
   id: string;
@@ -233,12 +294,12 @@ interface Message {
   timestamp: Date;
 }
 
-export default function Chatbot() {
+export default function RAGChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! 👋 I'm Tim's AI assistant. I know all about his experience at companies like Unisys and his skills in React, Next.js, and TypeScript. Ask me anything!",
+      text: "Hi! 👋 I'm Tim's AI assistant powered by RAG (Retrieval-Augmented Generation). I can answer questions about his experience, skills, projects, and even tell you the current date and time. Try asking me anything!",
       isBot: true,
       timestamp: new Date()
     }
@@ -270,7 +331,7 @@ export default function Chatbot() {
     setIsTyping(true);
 
     setTimeout(() => {
-      const response = generateResponse(inputValue);
+      const response = generateRAGResponse(inputValue);
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: response,
@@ -301,8 +362,8 @@ export default function Chatbot() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-white font-semibold">Tim's AI Assistant</h3>
-                <p className="text-white/80 text-sm">Ask me anything!</p>
+                <h3 className="text-white font-semibold">Tim&apos;s AI Assistant</h3>
+                <p className="text-white/80 text-sm">RAG-powered chatbot</p>
               </div>
             </div>
             <button
