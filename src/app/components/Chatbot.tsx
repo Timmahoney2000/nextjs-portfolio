@@ -12,6 +12,12 @@ const knowledgeBase = {
       keywords: ['about', 'summary', 'who', 'introduction', 'overview', 'developer', 'frontend']
     },
     {
+        id: 'location',
+        category: 'location',
+        content: "Tim is located in South Plainfield, NJ 07080. He is looking to find a remote position but is open to a hybrid work schedule at a location within a 30 mile radius.",
+        keywords: ['location', 'new jersey', 'NJ', 'work', 'area', 'commute', 'travel', 'located', 'remote', 'hybrid']
+    },
+    {
       id: 'contact',
       category: 'contact',
       content: "Contact Timothy Mahoney at email: timmahoney2000@gmail.com, phone: (908) 397-8825, location: South Plainfield, NJ 07080. LinkedIn: linkedin.com/in/timmahoney77, GitHub: github.com/Timmahoney2000, Twitter: x.com/timmahoney2000. He is open to new opportunities and collaborations.",
