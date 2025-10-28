@@ -50,11 +50,8 @@ export default function Contact() {
 
 useEffect(() => {
   const timer = setTimeout(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-      addOutput('');
-      addOutput(QUESTIONS[0].prompt, 'prompt');
-    }
+    addOutput('');
+    addOutput(QUESTIONS[0].prompt, 'prompt');
   }, 500);
   return () => clearTimeout(timer);
 }, []);

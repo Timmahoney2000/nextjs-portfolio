@@ -146,21 +146,17 @@ const knowledgeBase = {
   ]
 };
 
-// Simple semantic search function
 function searchKnowledge(query: string, topK: number = 3): string[] {
   const queryLower = query.toLowerCase();
   const queryWords = queryLower.split(/\s+/).filter(w => w.length > 2);
   
-  // Score each document based on keyword matches and content relevance
   const scored = knowledgeBase.documents.map(doc => {
     let score = 0;
     
-    // Check keyword matches (high weight)
     doc.keywords.forEach(keyword => {
       if (queryLower.includes(keyword)) {
         score += 10;
       }
-      // Exact keyword match in query words
       if (queryWords.includes(keyword)) {
         score += 15;
       }
@@ -171,14 +167,12 @@ function searchKnowledge(query: string, topK: number = 3): string[] {
       });
     });
     
-    // Check content matches (lower weight)
     queryWords.forEach(word => {
       if (doc.content.toLowerCase().includes(word)) {
         score += 2;
       }
     });
     
-    // Boost exact phrase matches
     if (doc.content.toLowerCase().includes(queryLower)) {
       score += 15;
     }
@@ -186,8 +180,6 @@ function searchKnowledge(query: string, topK: number = 3): string[] {
     return { doc, score };
   });
   
-  // Sort by score and return top K documents
-  // Only return documents with meaningful scores (threshold of 5)
   return scored
     .sort((a, b) => b.score - a.score)
     .filter(item => item.score > 5)
@@ -195,12 +187,9 @@ function searchKnowledge(query: string, topK: number = 3): string[] {
     .map(item => item.doc.content);
 }
 
-// Enhanced response generator using RAG
 function generateRAGResponse(query: string): string {
   const queryLower = query.toLowerCase();
   
-  // Real-time information handlers (priority)
-  // Date and time questions
   if (queryLower.includes('date') || queryLower.includes('today')) {
     const now = new Date();
     const dateStr = now.toLocaleDateString('en-US', { 
@@ -233,49 +222,41 @@ function generateRAGResponse(query: string): string {
     return `The current year is ${year}.`;
   }
   
-  // Weather (can't provide real weather, but can acknowledge)
   if (queryLower.includes('weather')) {
     return "I don't have access to real-time weather data, but you can check weather.com or your local weather app! Is there anything about Tim's experience or skills I can help you with?";
   }
   
-  // Knowledge base retrieval for Tim-specific questions
   const relevantDocs = searchKnowledge(query, 3);
   
   if (relevantDocs.length === 0) {
     return "I don't have specific information about that, but feel free to ask me about Tim's experience, skills, projects, education, or how to contact him! I can also tell you the current date and time.";
   }
   
-  // Handle specific question types with retrieved context
   if (queryLower.match(/^(hi|hello|hey|greetings)/)) {
     return "Hi! 👋 I'm Tim's AI assistant. I can answer questions about his experience, skills, projects, and education. I can also tell you the current date and time. What would you like to know?";
   }
   
-  // For simple/specific questions, return only the most relevant document
   const simpleQuestions = ['hobbies', 'hobby', 'free time', 'fun', 'interests', 'email', 'phone', 'contact', 'location', 'where', 'gpa', 'school', 'degree', 'books', 'reading'];
   const isSimpleQuestion = simpleQuestions.some(term => queryLower.includes(term));
   
   if (isSimpleQuestion && relevantDocs.length > 0) {
-    return relevantDocs[0]; // Return only the top match
+    return relevantDocs[0];
   }
   
-  // For "what" questions, provide direct information
   if (queryLower.includes('what') || queryLower.includes('tell me')) {
-    // If asking about broad topics, return multiple docs
     const broadTopics = ['experience', 'skills', 'projects', 'background'];
     const isBroadQuestion = broadTopics.some(term => queryLower.includes(term));
     
     if (isBroadQuestion) {
       return relevantDocs.join('\n\n');
     }
-    return relevantDocs[0]; // Otherwise just the top result
+    return relevantDocs[0];
   }
   
-  // For "how" questions about contact
   if (queryLower.includes('how') && (queryLower.includes('contact') || queryLower.includes('reach'))) {
     return relevantDocs[0];
   }
   
-  // For yes/no questions, provide context
   if (queryLower.match(/^(do|does|can|is|are|has|have)/)) {
     const answer = relevantDocs[0];
     if (answer.toLowerCase().includes(queryLower.replace(/^(do|does|can|is|are|has|have)\s+/i, ''))) {
@@ -284,12 +265,10 @@ function generateRAGResponse(query: string): string {
     return relevantDocs[0];
   }
   
-  // Default: return most relevant single document for focused questions
   if (relevantDocs.length === 1) {
     return relevantDocs[0];
   }
   
-  // For complex queries, return top 2 results max
   return relevantDocs.slice(0, 2).join('\n\n');
 }
 
@@ -298,6 +277,81 @@ interface Message {
   text: string;
   isBot: boolean;
   timestamp: Date;
+}
+
+// Agent Pipeline Component
+function AgentPipeline({ stage }: { stage: number }) {
+  const stages = [
+    { label: 'Query', icon: '🔍', color: 'from-blue-500 to-cyan-500' },
+    { label: 'Retrieval', icon: '📚', color: 'from-purple-500 to-pink-500' },
+    { label: 'Generation', icon: '⚙️', color: 'from-orange-500 to-red-500' },
+    { label: 'Response', icon: '💬', color: 'from-green-500 to-emerald-500' }
+  ];
+
+  return (
+    <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900 p-4 rounded-2xl mb-3 border border-neutral-200 dark:border-neutral-700 shadow-lg">
+      <div className="flex items-center justify-between gap-2">
+        {stages.map((s, idx) => (
+          <React.Fragment key={idx}>
+            <div className="flex flex-col items-center gap-1 flex-1">
+              <div className="relative">
+                {/* Pulsing glow effect */}
+                {idx === stage && (
+                  <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${s.color} blur-xl opacity-60 animate-pulse`} />
+                )}
+                {/* Main icon */}
+                <div
+                  className={`relative w-12 h-12 rounded-full flex items-center justify-center text-xl transition-all duration-500 ${
+                    idx <= stage
+                      ? `bg-gradient-to-r ${s.color} scale-110 shadow-2xl animate-bounce`
+                      : 'bg-neutral-300 dark:bg-neutral-700 scale-90'
+                  }`}
+                  style={{
+                    animationDuration: idx === stage ? '0.6s' : '0s',
+                    animationIterationCount: idx === stage ? 'infinite' : '0'
+                  }}
+                >
+                  {s.icon}
+                </div>
+                {/* Particle effects */}
+                {idx === stage && (
+                  <>
+                    <div className={`absolute -top-1 -right-1 w-2 h-2 rounded-full bg-gradient-to-r ${s.color} animate-ping`} />
+                    <div className={`absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-gradient-to-r ${s.color} animate-ping`} style={{ animationDelay: '0.2s' }} />
+                  </>
+                )}
+              </div>
+              <span className={`text-xs font-bold transition-all duration-300 ${
+                idx <= stage 
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r ' + s.color + ' scale-110' 
+                  : 'text-neutral-400 scale-100'
+              }`}>
+                {s.label}
+              </span>
+            </div>
+            {idx < stages.length - 1 && (
+              <div className="flex-1 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700 relative overflow-hidden shadow-inner">
+                {/* Animated progress bar with shimmer */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-r ${s.color} transition-all duration-500 ${
+                    idx < stage ? 'w-full' : 'w-0'
+                  }`}
+                >
+                  {idx < stage && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-shimmer" />
+                  )}
+                </div>
+                {/* Moving particle on active connection */}
+                {idx === stage - 1 && (
+                  <div className={`absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-r ${s.color} shadow-lg animate-slide-right`} />
+                )}
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default function RAGChatbot() {
@@ -312,6 +366,7 @@ export default function RAGChatbot() {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [pipelineStage, setPipelineStage] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -335,9 +390,17 @@ export default function RAGChatbot() {
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
+    setPipelineStage(0);
+
+    // Animate through pipeline stages
+    const stageTimings = [200, 400, 600]; // Query, Retrieval, Generation
+    stageTimings.forEach((delay, idx) => {
+      setTimeout(() => setPipelineStage(idx + 1), delay);
+    });
 
     setTimeout(() => {
-      const response = generateRAGResponse(inputValue);
+      setPipelineStage(3); // Response stage
+      const response = generateRAGResponse(userMessage.text);
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: response,
@@ -346,7 +409,8 @@ export default function RAGChatbot() {
       };
       setMessages(prev => [...prev, botMessage]);
       setIsTyping(false);
-    }, 800);
+      setPipelineStage(0);
+    }, 1200);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -414,17 +478,20 @@ export default function RAGChatbot() {
               </div>
             ))}
             {isTyping && (
-              <div className="flex gap-2 justify-start">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div className="bg-neutral-100 dark:bg-neutral-800 p-3 rounded-2xl">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                    <div className="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                    <div className="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              <div className="space-y-2">
+                <AgentPipeline stage={pipelineStage} />
+                <div className="flex gap-2 justify-start">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="bg-neutral-100 dark:bg-neutral-800 p-3 rounded-2xl">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
                   </div>
                 </div>
               </div>
