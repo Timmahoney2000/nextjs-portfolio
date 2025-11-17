@@ -30,6 +30,6 @@ export const projects = [
         projectImage: "/images/pizza.png",
         projectPreviewLink: "https://ciccios-pizza-git-master-tims-projects-43918398.vercel.app/",
         projectSourceCode: "https://github.com/Timmahoney2000/ciccios-pizza"
-     },
+     }
     ];
      
