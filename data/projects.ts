@@ -29,7 +29,7 @@ export const projects = [
         projectDescription: "Ciccio’s Pizza is a pizzeria e-commerce website built with Next.js (bootstrapped via create-next-app). Using TypeScript and optimized font loading (via next/font), the site provides a modern, performant user experience. The repository is deployed on Vercel, making it easy to host and scale.",
         projectImage: "/images/pizza.png",
         projectPreviewLink: "https://ciccios-pizza-git-master-tims-projects-43918398.vercel.app/",
-        projectSourceCode: "https://github.com/Timmahoney2000/ciccios-pizza",
+        projectSourceCode: "https://github.com/Timmahoney2000/ciccios-pizza"
      }
     ];
      
