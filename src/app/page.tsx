@@ -7,6 +7,7 @@ import Chatbot from './components/Chatbot';
 import { FloatingNav } from './components/ui/floating-navbar';
 import { navItems } from '../../data/nav-items';
 import { projects } from '../../data/projects';
+import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
   return (
