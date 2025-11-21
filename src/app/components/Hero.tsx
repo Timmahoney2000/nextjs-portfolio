@@ -23,9 +23,9 @@ export default function Hero() {
       {/* Radial gradient for the container to give a faded look */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
       <div className='z-50'>
-        <h2 className='text-neutral-600 dark:text-neutral-300 uppercase text-xl text-center'>Next.js Fullstack Developer</h2>
+        <h2 className='text-neutral-600 dark:text-neutral-300 uppercase text-xl text-center'>Next.js Fullstack Developer | AI Agent Architect</h2>
         <TextGenerateEffect words='Turning imagination into seamless interaction.'/>
-        <p className='text-center text-neutral-600 dark:text-neutral-300 lg:text-xl md:tracking-wider'>Hello, I&apos;m Tim. A Fullstack Developer.</p>
+        <p className='text-center text-neutral-600 dark:text-neutral-300 lg:text-xl md:tracking-wider'>Hello, I&apos;m Tim. A Fullstack Developer & AI Agent Architect.</p>
         <div className='flex justify-center my-6'>
           <a href="#RecentProjects" className='px-8 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white'>Explore My Work</a>
         </div>
