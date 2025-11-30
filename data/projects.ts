@@ -25,11 +25,11 @@ export const projects = [
     },
     {
         id: 4,
-        projectTitle: "Pizzeria E-Commerce Site",
-        projectDescription: "Ciccio's Pizza is a pizzeria e-commerce website built with Next.js (bootstrapped via create-next-app). Using TypeScript and optimized font loading (via next/font), the site provides a modern, performant user experience. The repository is deployed on Vercel, making it easy to host and scale.",
-        projectImage: "/images/pizza.png",
-        projectPreviewLink: "https://ciccios-pizza-git-master-tims-projects-43918398.vercel.app/",
-        projectSourceCode: "https://github.com/Timmahoney2000/ciccios-pizza"
+        projectTitle: "100 Devs AI Resource Site",
+        projectDescription: "A curated resource platform built for the 100 Devs community, featuring AI-powered search that finds exactly what users need across videos and tutorials. The site includes direct timestamped video links based on search criteria, a personalized bookmarking system, and an organized library of tools, guides, and learning resources. Designed with a clean, intuitive interface.",
+        projectImage: "/images/100resources.png",
+        projectPreviewLink: "https://www.100resources.info/",
+        projectSourceCode: "https://github.com/Timmahoney2000/frontend"
     }
 ];
 
