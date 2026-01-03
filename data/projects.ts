@@ -1,11 +1,11 @@
 export const projects = [
     {
         id: 1,
-        projectTitle: "A custom seafood restaurant website highlighting Park Seafood's menu, specials, and story through a clean, engaging design.",
-        projectDescription: "A modern, mobile-friendly restaurant site built to highlight Park Seafood's menu and coastal charm with a clean design and smooth user experience.",
-        projectImage: "/images/park-seafood.png",
-        projectPreviewLink: "https://parkseafood.netlify.app/",
-        projectSourceCode: "https://github.com/Timmahoney2000/park_seafood"
+        projectTitle: "LawParse.",
+        projectDescription: "LawParse translates legal language into clear, plain English for professionals who work with contracts, policies, and agreements every day. Understand legal documents, LawParse helps you make sense of them before you escalate to legal counsel.",
+        projectImage: "/images/legalese.png",
+        projectPreviewLink: "https://www.lawparse.com/",
+        projectSourceCode: "https://github.com/Timmahoney2000/legalese"
     },
     {
         id: 3,
