@@ -1,7 +1,7 @@
 export const projects = [
     {
         id: 1,
-        projectTitle: "LawParse.",
+        projectTitle: "LawParse",
         projectDescription: "LawParse translates legal language into clear, plain English for professionals who work with contracts, policies, and agreements every day. Understand legal documents, LawParse helps you make sense of them before you escalate to legal counsel.",
         projectImage: "/images/legalese.png",
         projectPreviewLink: "https://www.lawparse.com/",
