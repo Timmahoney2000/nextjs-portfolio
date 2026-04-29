@@ -1,7 +1,7 @@
 import Hero from './components/Hero';
 import About from './components/About';
 import RecentProjects from './components/RecentProjects';
-import Testimonials from './components/ui/Testimonials';
+// import Testimonials from './components/ui/Testimonials';
 import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
 import { FloatingNav } from './components/ui/floating-navbar';
@@ -18,7 +18,7 @@ export default function Home() {
         <Chatbot/>
         <About/>
         <RecentProjects/>
-        <Testimonials/>
+        {/* <Testimonials/> */}
         <Contact/>
       </div>
     </main>
