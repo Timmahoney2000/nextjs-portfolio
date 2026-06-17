@@ -324,7 +324,7 @@ useEffect(() => {
     {/* Alt Contact */}
 <div className='py-6 bg-white dark:bg-black'>
   <div className='text-center mb-8'>
-    <a href="/resume.docx" download className="px-8 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:shadow-lg transition-shadow">
+    <a href="/resume.pdf" download className="px-8 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:shadow-lg transition-shadow">
       Download Resume
     </a>
   </div>
