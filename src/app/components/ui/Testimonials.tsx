@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import Header from '../reuseable-components/Header';
 import { AnimatedTestimonials } from './animated-testimonials';
 
