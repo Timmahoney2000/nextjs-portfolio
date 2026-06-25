@@ -25,11 +25,11 @@ export const projects = [
     },
     {
         id: 4,
-        projectTitle: "Sonic the Hedgehog side-scroller web game",
-        projectDescription: "Sonic Side-Scroller is a 2D browser game built with Vite and JavaScript, featuring smooth animations, collision detection, and responsive controls. It showcases my ability to build interactive, performance-optimized experiences using modern front-end technologies",
+        projectTitle: "Neighborhood Nourish",
+        projectDescription: "A community resource finder that helps New Jersey residents locate free meals, food pantries, and food banks near them. Built with a vanilla JS frontend and a Node.js/Express REST API backed by a custom dataset of 579 pantries across all 21 NJ counties — sourced, parsed, geocoded, and deduplicated from multiple public data sources including OpenStreetMap, Kean University, and original research.",
         projectImage: "/images/sonic.png",
-        projectPreviewLink: "https://sonic-side-scroller.netlify.app/",
-        projectSourceCode: "https://github.com/Timmahoney2000/sonic"
+        projectPreviewLink: "https://neighborhoodnourish-kwhwsapvi-tims-projects-43918398.vercel.app/",
+        projectSourceCode: "https://github.com/Timmahoney2000/neighborhoodnourish"
     },
 ];
  
