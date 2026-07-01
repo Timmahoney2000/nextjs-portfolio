@@ -78,16 +78,22 @@ const knowledgeBase = {
       keywords: ['portfolio', 'project', 'nextjs', 'tailwind', 'chatbot', 'website', 'this site']
     },
     {
-      id: 'project-notes',
+      id: 'lawparse',
       category: 'projects',
-      content: "Notes App: Full-stack MERN application (MongoDB, Express.js, React, Node.js) with CRUD functionality. Designed RESTful API backend interfacing with MongoDB database for secure note management and real-time updates. Deployed on Render cloud platform, showcasing DevOps skills.",
-      keywords: ['notes app', 'project', 'mern', 'mongodb', 'crud', 'fullstack', 'react', 'nodejs']
+      content: "Lawparse: LawParse is an AI-powered web tool that translates dense legal documents — NDAs, leases, employment contracts, vendor agreements, and more — into plain English. Users upload a PDF, DOCX, or TXT file, and the tool identifies legal terms and clauses, cross-references them against established legal definitions and publicly available legal sources, and returns a clear, structured, plain-English explanation. It's aimed at non-lawyers (freelancers, small business owners, HR teams, startup founders) who need to understand what they're signing without paying for hourly legal review. It offers a free tier (5 translations/day) with paid upgrades for higher limits and pro features.",
+      keywords: ['LawParse', 'legal document translator', 'plain English legal translator', 'legalese translator', 'contract translator', 'NDA translator', 'lease agreement translator', 'employment contract explainer', 'terms of service explainer', 'privacy policy explainer', 'legal jargon simplifier', 'AI legal tool', 'legal tech', 'document upload', 'PDF DOCX TXT parsing', 'Next.js', 'React', 'Tailwind CSS', 'Python', 'OpenAI SDK', 'OpenAI API', 'RAG', 'plain language law', 'contract review tool', 'small business legal tool', 'freelancer contract tool', 'startup legal tool', 'HR compliance documents', 'legal document summarizer', 'non-lawyer legal help']
     },
     {
-      id: 'project-restaurant',
+      id: '100Resources',
       category: 'projects',
-      content: "Restaurant Website for Park Seafood in Seaside Park, NJ. Multi-page responsive site with HTML5, CSS, JavaScript. Features menu sections, structured navigation, and design reflecting boardwalk heritage and fresh seafood focus.",
-      keywords: ['restaurant', 'project', 'park seafood', 'website', 'html', 'css']
+      content: "100Resources is a resource hub built for the 100Devs coding community by Timothy J. Mahoney. It organizes learning links into categories-Leon's Links, Code Editors, and Learning Resources-and connects to the 100Devs Discord. Its standout feature is a semantic search engine that lets users search across all of Leon Noel's Youtube videos by keyword or topic(e.g. 'job searching') and returns a compiled playlist of matching video clips with exact timestamps where that topic was discussed. Videos are ingested and processed via Python and indexed in a Pinecone vector database to power this semantic search. The site also uses the AI.sdk to generate custom, personalized learning paths for users based on their goals.Tech Stack: Next.js, Tailwind CSS, Python, Pinecone Vector Database, AI.sdk",
+      keywords: ['100 Resources', '100Devs', 'coding bootcamp resources', 'learning resources', 'code editors', 'developer tools', 'web development resources', 'Discord community', 'Next.js', 'React', 'Tailwind CSS', 'Python', 'Pinecone', 'vector database', 'semantic search', 'video search engine', 'YouTube video search', 'timestamp search', 'Leon Noel', 'video ingestion', 'transcript search', 'playlist generator', 'custom learning path', 'AI SDK', 'personalized learning', 'RAG', 'resource hub', 'curated links', 'bootcamp community', 'free coding resources']
+    },
+    {
+      id: 'Mern-notes',
+      category: 'projects',
+      content: "MERN ThinkBoard is a Kanban-style note board application built on the MERN stack. It lets users create, read, update, and delete notes, and organize them via drag-and-drop across the board — providing a simple, visual way to manage tasks, ideas, or to-do items.",
+     keywords: ['ThinkBoard', 'MERN ThinkBoard', 'kanban board', 'note board', 'note-taking app', 'task management', 'drag and drop', 'CRUD app', 'MERN stack', 'MongoDB', 'Express', 'React', 'Node.js', 'fullstack project', 'productivity app', 'sticky notes', 'task organizer', 'project management tool']
     },
     {
       id: 'achievements',
